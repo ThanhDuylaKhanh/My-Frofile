@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lâm Duy Khánh - Personal Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+      * {
+        font-family: "Inter", sans-serif;
+      }
+
+      .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+
+      .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      .progress-bar {
+        transition: width 1s ease-in-out;
+      }
+
+      .section-fade {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .section-fade.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: #667eea;
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm fixed w-full top-0 z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-bold text-gray-800">LDK</div>
+          <div class="hidden md:flex space-x-8">
+            <a
+              href="#home"
+              class="nav-link text-gray-600 hover:text-gray-800 active"
+              >Home</a
+            >
+            <a href="#about" class="nav-link text-gray-600 hover:text-gray-800"
+              >About Me</a
+            >
+            <a
+              href="#achievements"
+              class="nav-link text-gray-600 hover:text-gray-800"
+              >Achievements</a
+            >
+            <a href="#skills" class="nav-link text-gray-600 hover:text-gray-800"
+              >Skills</a
+            >
+            <a
+              href="#projects"
+              class="nav-link text-gray-600 hover:text-gray-800"
+              >Projects</a
+            >
+            <a
+              href="#contact"
+              class="nav-link text-gray-600 hover:text-gray-800"
+              >Contact</a
+            >
+          </div>
+          <button class="md:hidden" onclick="toggleMobileMenu()">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden mt-4 space-y-2">
+          <a href="#home" class="block py-2 text-gray-600">Home</a>
+          <a href="#about" class="block py-2 text-gray-600">About Me</a>
+          <a href="#achievements" class="block py-2 text-gray-600"
+            >Achievements</a
+          >
+          <a href="#skills" class="block py-2 text-gray-600">Skills</a>
+          <a href="#projects" class="block py-2 text-gray-600">Projects</a>
+          <a href="#contact" class="block py-2 text-gray-600">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="gradient-bg min-h-screen flex items-center justify-center text-white pt-20"
+    >
+      <div class="container mx-auto px-6 text-center">
+        <div class="mb-8">
+          <div
+            class="w-32 h-32 mx-auto mb-6 rounded-full bg-white/20 backdrop-blur-sm overflow-hidden"
+          >
+            <img
+              src="https://lh3.googleusercontent.com/a/ACg8ocKHaDxR29_7lvDcQjEAgPbhW81ByFqa1jk31hVldh38Ev0p_Vhe=s360-c-no"
+              alt="Lâm Duy Khánh"
+              class="w-full h-full object-cover"
+              onerror="this.src=''; this.alt='Profile image failed to load'; this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-white text-4xl font-bold\'>LDK</div>';"
+            />
+          </div>
+        </div>
+        <h1 class="text-5xl md:text-6xl font-bold mb-6">Lâm Duy Khánh</h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
+          Xin chào, mình là Lâm Duy Khánh – học sinh THPT Chuyên Chu Văn An, đam
+          mê Tin học và Lập trình.
+        </p>
+        <div class="space-x-4">
+          <button
+            onclick="downloadCV()"
+            class="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
+          >
+            Xem CV
+          </button>
+          <a
+            href="#contact"
+            class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition duration-300 inline-block"
+          >
+            Liên hệ ngay
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Me -->
+    <section id="about" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="section-fade">
+          <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">
+            Giới thiệu về tôi
+          </h2>
+          <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <div
+                class="w-64 h-64 mx-auto rounded-full overflow-hidden shadow-lg"
+              >
+                <img
+                  src="https://i.postimg.cc/QNyRWSyn/4cf213fb2a2742cf3ffb36aeb6bd8bd8.jpg"
+                  alt="Khánh đang học lập trình"
+                  class="w-full h-full object-cover"
+                  onerror="this.src=''; this.alt='Study image failed to load'; this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-purple-400 to-blue-500 flex items-center justify-center text-white text-6xl\'>📚</div>';"
+                />
+              </div>
+            </div>
+            <div class="space-y-6">
+              <div class="bg-gray-50 p-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-4 text-gray-800">
+                  Thông tin cơ bản
+                </h3>
+                <div class="space-y-3">
+                  <p><span class="font-medium">Họ tên:</span> Lâm Duy Khánh</p>
+                  <p>
+                    <span class="font-medium">Trường:</span> THPT Chuyên Chu Văn
+                    An
+                  </p>
+                  <p><span class="font-medium">Chuyên ngành:</span> Tin học</p>
+                  <p>
+                    <span class="font-medium">Sở thích:</span> Lập trình, Game
+                    Development
+                  </p>
+                </div>
+              </div>
+              <div class="bg-gray-50 p-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-4 text-gray-800">
+                  Định hướng tương lai
+                </h3>
+                <p class="text-gray-600 leading-relaxed">
+                  Mình mong muốn trở thành một lập trình viên phần mềm chuyên
+                  nghiệp, đặc biệt quan tâm đến việc phát triển game và ứng dụng
+                  web. Mục tiêu là không ngừng học hỏi và áp dụng công nghệ mới
+                  để tạo ra những sản phẩm có ý nghĩa.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="section-fade">
+          <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">
+            Thành tích
+          </h2>
+          <div class="max-w-4xl mx-auto">
+            <div class="space-y-8">
+              <div
+                class="card-hover bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-400"
+              >
+                <div class="flex items-center mb-4">
+                  <div
+                    class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4"
+                  >
+                    <svg
+                      class="w-6 h-6 text-yellow-600"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-semibold text-gray-800">
+                      Giải 3 HSG cấp tỉnh môn Tin học
+                    </h3>
+                    <p class="text-gray-600">Lớp 11 - 2024</p>
+                  </div>
+                </div>
+                <p class="text-gray-600">
+                  Đạt giải Ba học sinh giỏi cấp tỉnh môn Tin học, thể hiện khả
+                  năng tư duy logic và kỹ năng lập trình xuất sắc.
+                </p>
+              </div>
+
+              <div
+                class="card-hover bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-400"
+              >
+                <div class="flex items-center mb-4">
+                  <div
+                    class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4"
+                  >
+                    <svg
+                      class="w-6 h-6 text-blue-600"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-semibold text-gray-800">
+                      Giải 3 HSG cấp trường
+                    </h3>
+                    <p class="text-gray-600">Lớp 10 & 11 - 2023, 2024</p>
+                  </div>
+                </div>
+                <p class="text-gray-600">
+                  Liên tiếp đạt giải Ba học sinh giỏi cấp trường trong 2 năm,
+                  thể hiện sự ổn định và tiến bộ không ngừng.
+                </p>
+              </div>
+
+              <div
+                class="card-hover bg-white p-6 rounded-lg shadow-md border-l-4 border-green-400"
+              >
+                <div class="flex items-center mb-4">
+                  <div
+                    class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4"
+                  >
+                    <svg
+                      class="w-6 h-6 text-green-600"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-semibold text-gray-800">
+                      Microsoft Office Specialist 365 Apps
+                    </h3>
+                    <p class="text-gray-600">Chứng chỉ quốc tế - 2024</p>
+                  </div>
+                </div>
+                <p class="text-gray-600">
+                  Đạt chứng chỉ Microsoft Office Specialist cho Office 365 Apps,
+                  chứng minh khả năng sử dụng thành thạo các công cụ văn phòng.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="section-fade">
+          <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">
+            Kỹ năng
+          </h2>
+          <div class="max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-8">
+              <div class="space-y-6">
+                <h3 class="text-2xl font-semibold mb-6 text-gray-800">
+                  Kỹ năng thiết kế & phát triển
+                </h3>
+
+                <div class="skill-item">
+                  <div class="flex justify-between mb-2">
+                    <span class="font-medium text-gray-700">Canva</span>
+                    <span class="text-sm text-gray-500">1 năm</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-3">
+                    <div
+                      class="progress-bar bg-gradient-to-r from-purple-500 to-pink-500 h-3 rounded-full"
+                      style="width: 85%"
+                    ></div>
+                  </div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="flex justify-between mb-2">
+                    <span class="font-medium text-gray-700">Lập trình Web</span>
+                    <span class="text-sm text-gray-500">1 năm</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-3">
+                    <div
+                      class="progress-bar bg-gradient-to-r from-blue-500 to-cyan-500 h-3 rounded-full"
+                      style="width: 75%"
+                    ></div>
+                  </div>
+                </div>
+
+                <div class="skill-item">
+                  <div class="flex justify-between mb-2">
+                    <span class="font-medium text-gray-700"
+                      >Lập trình Game</span
+                    >
+                    <span class="text-sm text-gray-500">6 tháng</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-3">
+                    <div
+                      class="progress-bar bg-gradient-to-r from-green-500 to-teal-500 h-3 rounded-full"
+                      style="width: 60%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <h3 class="text-2xl font-semibold mb-6 text-gray-800">
+                  Ngôn ngữ lập trình
+                </h3>
+
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="bg-gray-50 p-4 rounded-lg text-center">
+                    <div class="text-3xl mb-2">🔵</div>
+                    <h4 class="font-semibold text-gray-800">C++</h4>
+                    <p class="text-sm text-gray-600">Trung cấp</p>
+                  </div>
+
+                  <div class="bg-gray-50 p-4 rounded-lg text-center">
+                    <div class="text-3xl mb-2">⚙️</div>
+                    <h4 class="font-semibold text-gray-800">C</h4>
+                    <p class="text-sm text-gray-600">Cơ bản</p>
+                  </div>
+
+                  <div class="bg-gray-50 p-4 rounded-lg text-center">
+                    <div class="text-3xl mb-2">🐍</div>
+                    <h4 class="font-semibold text-gray-800">Python</h4>
+                    <p class="text-sm text-gray-600">Trung cấp</p>
+                  </div>
+
+                  <div class="bg-gray-50 p-4 rounded-lg text-center">
+                    <div class="text-3xl mb-2">🌐</div>
+                    <h4 class="font-semibold text-gray-800">HTML/JS</h4>
+                    <p class="text-sm text-gray-600">Trung cấp</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="section-fade">
+          <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">
+            Dự án cá nhân
+          </h2>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div
+              class="card-hover bg-white rounded-lg shadow-md overflow-hidden"
+            >
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=200&fit=crop"
+                  alt="Website Portfolio Project"
+                  class="w-full h-full object-cover"
+                  onerror="this.src=''; this.alt='Portfolio image failed to load'; this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white text-4xl\'>🌐</div>';"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">
+                  Website Portfolio
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  Website cá nhân được xây dựng bằng HTML, CSS và JavaScript để
+                  giới thiệu bản thân và các dự án.
+                </p>
+                <div class="flex space-x-2"></div>
+              </div>
+            </div>
+
+            <div
+              class="card-hover bg-white rounded-lg shadow-md overflow-hidden"
+            >
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&h=200&fit=crop"
+                  alt="Game Development Project"
+                  class="w-full h-full object-cover"
+                  onerror="this.src=''; this.alt='Game image failed to load'; this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-white text-4xl\'>🎮</div>';"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">
+                  Game Puzzle 2D
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  Game giải đố 2D đơn giản được phát triển bằng Python và
+                  Pygame, với nhiều level thử thách.
+                </p>
+                <div class="flex space-x-2">
+                  <button
+                    onclick="viewProject('game')"
+                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
+                  >
+                    Xem demo
+                  </button>
+                  <button
+                    onclick="viewGithub('game')"
+                    class="border border-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-50 transition duration-300"
+                  >
+                    GitHub
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="card-hover bg-white rounded-lg shadow-md overflow-hidden"
+            >
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop"
+                  alt="Study Management Tool"
+                  class="w-full h-full object-cover"
+                  onerror="this.src=''; this.alt='Tool image failed to load'; this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center text-white text-4xl\'>📊</div>';"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">
+                  Tool Quản lý Học tập
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  Ứng dụng desktop giúp quản lý thời gian biểu và theo dõi tiến
+                  độ học tập cá nhân.
+                </p>
+                <div class="flex space-x-2">
+                  <button
+                    onclick="viewProject('tool')"
+                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300"
+                  >
+                    Xem demo
+                  </button>
+                  <button
+                    onclick="viewGithub('tool')"
+                    class="border border-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-50 transition duration-300"
+                  >
+                    GitHub
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+
+    <section id="contact" class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="section-fade">
+      <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">
+        Liên hệ
+      </h2>
+      <div class="max-w-4xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12">
+          
+          <!-- Form -->
+          <div>
+            <h3 class="text-2xl font-semibold mb-6 text-gray-800">
+              Gửi tin nhắn
+            </h3>
+            <form id="contact-form" class="space-y-6" onsubmit="submitForm(event)">
+              <div>
+                <label for="fullname" class="block text-sm font-medium text-gray-700 mb-2">Họ tên</label>
+                <input
+                  id="fullname"
+                  name="fullname"
+                  type="text"
+                  placeholder="Nhập họ tên của bạn"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="example@gmail.com"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Nội dung</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  placeholder="Viết tin nhắn của bạn..."
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-white py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-blue-600 transition duration-300"
+              >
+                Gửi tin nhắn
+              </button>
+            </form>
+          </div>
+
+          <!-- Contact Info -->
+          
+
+    <section id="contact" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="section-fade">
+          <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">
+            Liên hệ
+          </h2>
+          <div class="max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12">
+              <div>
+                <h3 class="text-2xl font-semibold mb-6 text-gray-800">
+                  Gửi tin nhắn
+                </h3>
+                <form class="space-y-6" onsubmit="submitForm(event)">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                      >Họ tên</label
+                    >
+                    <input
+                      type="text"
+                      required
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                      >Email</label
+                    >
+                    <input
+                      type="email"
+                      required
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                      >Nội dung</label
+                    >
+                    <textarea
+                      rows="5"
+                      required
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    ></textarea>
+                  </div>
+                  <button
+                    type="submit"
+                    class="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-white py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-blue-600 transition duration-300"
+                  >
+                    Gửi tin nhắn
+                  </button>
+                </form>
+              </div>
+
+              <div>
+                <h3 class="text-2xl font-semibold mb-6 text-gray-800">
+                  Thông tin liên hệ
+                </h3>
+                <div class="space-y-6">
+                  <div class="flex items-center space-x-4">
+                    <div
+                      class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center"
+                    >
+                      <svg
+                        class="w-6 h-6 text-purple-600"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold text-gray-800">Email</h4>
+                      <p class="text-gray-600">duykhanhcvak36@gmail.com</p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center space-x-4">
+                    <div
+                      class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center"
+                    >
+                      <svg
+                        class="w-6 h-6 text-blue-600"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold text-gray-800">Facebook</h4>
+                      <p class="text-gray-600">https://web.facebook.com/duy.khanh.856383</p>
+                    </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto px-6 text-center">
+        <p>&copy; 2024 Lâm Duy Khánh. Tất cả quyền được bảo lưu.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Mobile menu toggle
+      function toggleMobileMenu() {
+        const menu = document.getElementById("mobileMenu");
+        menu.classList.toggle("hidden");
+      }
+
+      // Active navigation highlighting
+      window.addEventListener("scroll", () => {
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 100;
+          if (scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+          }
+        });
+      });
+
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".section-fade").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Progress bar animation
+      const skillsSection = document.getElementById("skills");
+      const skillsObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const progressBars = entry.target.querySelectorAll(".progress-bar");
+            progressBars.forEach((bar) => {
+              const width = bar.style.width;
+              bar.style.width = "0%";
+              setTimeout(() => {
+                bar.style.width = width;
+              }, 500);
+            });
+          }
+        });
+      }, observerOptions);
+
+      skillsObserver.observe(skillsSection);
+
+      // Form submission
+      function submitForm(event) {
+        event.preventDefault();
+        alert("Cảm ơn bạn đã gửi tin nhắn! Mình sẽ phản hồi sớm nhất có thể.");
+        event.target.reset();
+      }
+
+      // CV download
+      function downloadCV() {
+        alert("Tính năng tải CV sẽ được cập nhật sớm!");
+      }
+
+      // Project viewing
+      function viewProject(projectName) {
+        alert(`Đang mở demo dự án ${projectName}...`);
+      }
+
+      function viewGithub(projectName) {
+        alert(`Đang mở GitHub repository cho dự án ${projectName}...`);
+      }
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'971fe979e49d0eb6',t:'MTc1NTY3MjE2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
